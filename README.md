@@ -1,5 +1,6 @@
 # F-DOS QC
 F-DOS Quick and Cool
+
 (c) Borasoft F-DOS 17?
 
 # 개요
