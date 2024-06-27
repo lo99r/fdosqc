@@ -20,6 +20,33 @@
 #include<process.h>
 #include<io.h>
 
+typedef enum tokens {
+	AND,//0x00
+	ORB,//0x01
+	NOT,//0x02
+	XOR,//0x03
+	OUP,//0x04
+	INP,//0x05
+	MOV,//0x06
+	CEL,//0x07
+	HEX,//0x08
+	STC,//0x09
+	HLT,//0x0A
+	NUL
+}TOK_EN;
+
+//COORD
+
+#define clss system("cls")
+#define colors(backer, downer) SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (backer * 16) + downer)
+#define darkmodes system("0f")
+#define whitemodes system("f0")
+#define token(kokk) printf("%02x", kokk)
+#define typers 0x18//1319
+#define curposgens(x, y) SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), {(short)x, (short)y})
+#define ands(hexbinn) (hexbinn == 0) ? 0 : ((hexbinn == 1) ? 0 : ((hexbinn == 2) ? 0 : 1)))
+#define ors(hexbinn) (hexbinn == 0) ? 0 : ((hexbinn == 1) ? 1 : ((hexbinn == 2) ? 1 : 1)))
+
 typedef struct system//?
 {
 	struct Memory
@@ -93,5 +120,7 @@ typedef enum divliv {
 }Divliv_t;
 
 Divliv_t directoryscan(char a[100]);
+
+int orer(char jljljl[256]);
 
 #endif

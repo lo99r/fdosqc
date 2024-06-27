@@ -12,3 +12,8 @@ void Polzit() {
 		break;
 	}
 }
+
+TOK_EN testers = AND;
+int tokkk() {
+	token(testers);
+}

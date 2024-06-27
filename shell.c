@@ -22,23 +22,29 @@ int command_cd() {
 		int xount = 0;
 		memset(leftandright.directory.structdirectory_character[leftandright.directory.cight], '\0', MAX_PATH);
 		strcpy(leftandright.directory.structdirectory_character[leftandright.directory.cight], "\a");
+		return 0;
 	}
 	else if (strcmp(leftandright.file.informationkeeps.himsi[10], ".") == 0) {
 		int ppp = 0;
+		return 0;
 	}
 	else if (directoryscan(leftandright.file.informationkeeps.himsi[10]) == n) {
 		printf("없는 폴더입니다.\nerror: 0x1002");
 		return 0;
 	}
 	else {
+		memset(leftandright.directory.structdirectory_character[leftandright.directory.cight], '\0', MAX_PATH);
 		strcpy(leftandright.directory.structdirectory_character[leftandright.directory.cight], leftandright.file.informationkeeps.himsi[10]);
+		memset(leftandright.directory.structdirectory_character[leftandright.directory.cight + 1], '\0', MAX_PATH);
+		strcpy(leftandright.directory.structdirectory_character[leftandright.directory.cight + 1], "\a");
 	}
 	leftandright.directory.cight++;
 	leftandright.file.informationkeeps.ihmsi[1] = 1;
+	return 0;
 }
 
 unsigned _stdcall toroop(void* arg) {
-	while (1) {
+	while (0) {
 		while (leftandright.file.informationkeeps.ihmsi[1]) {
 			strcpy(leftandright.directory.structdirectory_character[leftandright.directory.cight], "*");
 		}
@@ -50,7 +56,7 @@ int shell() {
 	_beginthreadex(NULL, 0, toroop, 0, 0, NULL);
 	while (1) {
 		//scanf("%d %d %d %s", &leftandright.io.commandnumber[0], &leftandright.io.commandnumber[1], &leftandright.io.commandnumber[2], leftandright.io.commandcharacter);
-		char commandinputer[100] = { 0, };
+		char commandinputer[256] = { 0, };
 		int Panert = 0;
 		scanf("%s", commandinputer); // 뒤에 들어가는거 뭐임/*leftandright.memory.remdriveremembersystem.systempackagerfile*/
 		if (strcmp(commandinputer, "ver") == 0) {
@@ -131,6 +137,10 @@ int shell() {
 			printf("다람냥 운영환경 5.0 quick and cool 릴리즈\n\
 \n5.0.01\n\
 \n+ 빠르고 시원해짐\n\
+\n\
+\n5.0.1\n\
+\n+ 왈스크립트 추가\n\
+\n+ 개발기능 실행 여부\n\
 \n버그제보: lookout1423@gmail.com\n");
 			//system("start msedge.exe lookout1423@gmail.com");
 		}
@@ -159,7 +169,7 @@ int shell() {
 \n\
 현재버전에서 일어날 수 있는 모든 오류 측정완료...\n");
 		}
-		else if (strcmp(commandinputer, "help")) {
+		else if (strcmp(commandinputer, "help") == 0) {
 			printf("ver 버전\ndir 폴더\ncd 폴더에 들어가기\nrelease 릴리즈 노트\nerrorcodes 오류 코드들\nㅗ디ㅔ ahffkdy?\\ㅜexit 나가요!");
 		}
 		else if (strcmp(commandinputer, "exit") == 0) { // 잘못 끄셨는디?
@@ -167,12 +177,24 @@ int shell() {
 			break;
 		}
 		else {
-			int major = access(commandinputer, 0);
+			char dirrs[MAX_PATH];
+			strcpy(dirrs, leftandright.directory.directorynowcharacter);
+			strcat(dirrs, commandinputer);
+			int major = access(dirrs, 00);
 			if (major == 0) {
-				printf("아직 개발중인 기능입니다.");
+				//printf("아직 개발중인 기능입니다.");
+				printf("run: %s\\...\n현재 개발 중입니다. 개발중인 기능이므로 런과정에서 오류가 발생합니다. 실행하시겠습니까?", dirrs);
+				int mass = MessageBox(NULL, TEXT("실행하시겠습니까?"), TEXT("경고!!!"), MB_ICONWARNING | MB_YESNOCANCEL);
+				if (mass == IDNO || mass == IDCANCEL) {
+					continue;
+				}
+				else if (mass == IDYES) {
+					orer(dirrs);
+				}
+				//orer(dirrs);//commandinputer
 			}
 			else if (major == -1) {
-				printf("error: 0x0001\n");
+				printf("error: 0x0001\n#%d\n", major);
 			}
 			else {
 				printf("error: 0x0003");

@@ -60,11 +60,11 @@ int main(int argc, char* argv[2]) {
 				fread(leftandright.file.informationkeeps.ihmsi, sizeof(int), 100, informationuser);
 				fclose(informationuser);
 				leftandright.directory.cight += 1;
-				strcpy(leftandright.directory.directorynowcharacter, leftandright.file.informationkeeps.himsi[2]);
+				strcpy(leftandright.directory.directorynowcharacter, leftandright.file.informationkeeps.himsi[1]);
 				strcat(leftandright.directory.directorynowcharacter, ":\\");
-				strcpy(leftandright.directory.structdirectory_character[0], leftandright.file.informationkeeps.himsi[2]);
+				strcpy(leftandright.directory.structdirectory_character[0], leftandright.file.informationkeeps.himsi[1]);
 				strcat(leftandright.directory.structdirectory_character[0], ":");
-				strcpy(leftandright.directory.structdirectory_character[2], "\a");
+				strcpy(leftandright.directory.structdirectory_character[1], "\a");
 				printf("비밀번호가 맞습니다. 이제 쉘을 시작하겠습니다.\n");
 				system("echo 넘겨\npause > nul");
 				system("cls");

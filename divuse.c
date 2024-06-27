@@ -8,9 +8,10 @@ extern char version[100];
 
 typedef char stringer;
 
-static stringer strdir_v;
+stringer strdir_v[100];
 
 Divliv_t directoryscan(char a[100]) {
+	//memset(strdir_v, 100);
 	strcpy(strdir_v, leftandright.directory.directorynowcharacter);
 	strcat(strdir_v, a);
 	strcat(strdir_v, "\\");

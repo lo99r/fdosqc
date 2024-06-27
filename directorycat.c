@@ -58,7 +58,7 @@ int redirectorycatlimx(char ii[100][MAX_PATH], char i1[MAX_PATH]) {
 			j += 1;
 			i = 0;
 			k++;
-			if (ii[j][i] == '\a' /* || ii[j + 1][i] == '\a'*/) {
+			if (ii[j][i] == '\a' /*strcmp(ii[j], "\a") || ii[j + 1][i] == '\a'*/) {
 				printf("breaked becouse is ii[%d][%d] == \\a\nverse: %c\n", j, i, ii[j][i]);
 				break;
 			}
