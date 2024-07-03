@@ -1,7 +1,7 @@
 # F-DOS QC
 F-DOS Quick and Cool
 
-(c) Borasoft F-DOS 17?
+(c) Borasoft F-DOS 17?, 18
 
 # 개요
 본 프로그램은 윈도우 환경 위에서만 돌아가는 오픈소스 운영환경임을 알립니다.
