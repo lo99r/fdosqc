@@ -12,10 +12,10 @@ int startword() {
 
 int command_cd() {
 	leftandright.file.informationkeeps.ihmsi[1] = 0;
-	MessageBox(NULL, TEXT("현재 디렉토리에서 다른 디렉토리로 이동하시겠습니까?"), TEXT("선택권 없음..."), MB_OK);
+	//MessageBox(NULL, TEXT("현재 디렉토리에서 다른 디렉토리로 이동하시겠습니까?"), TEXT("선택권 없음..."), MB_OK);
 	//leftandright.directory.directorynowcharacter[leftandright.directory.cight];
 	printf("옮길 디렉토리로 이동\n..는 뒤로갑니다.\n");
-	scanf("%s", leftandright.file.informationkeeps.himsi[10]);
+	//.scanf("%s", leftandright.file.informationkeeps.himsi[10]);
 	if (strcmp(leftandright.file.informationkeeps.himsi[10], "..") == 0) {
 		memset(leftandright.directory.structdirectory_character[leftandright.directory.cight], '\0', MAX_PATH);
 		leftandright.directory.cight -= 1;
@@ -56,11 +56,13 @@ int shell() {
 	_beginthreadex(NULL, 0, toroop, 0, 0, NULL);
 	while (1) {
 		//scanf("%d %d %d %s", &leftandright.io.commandnumber[0], &leftandright.io.commandnumber[1], &leftandright.io.commandnumber[2], leftandright.io.commandcharacter);
+		char commandinput[256] = {0,};
+		scanf(" %[^\n]", commandinput);
 		char commandinputer[256] = { 0, };
 		int Panert = 0;
-		scanf("%s", commandinputer); // 뒤에 들어가는거 뭐임/*leftandright.memory.remdriveremembersystem.systempackagerfile*/
+		sscanf(commandinput, "%s", commandinputer); // 뒤에 들어가는거 뭐임/*leftandright.memory.remdriveremembersystem.systempackagerfile*/
 		if (strcmp(commandinputer, "ver") == 0) {
-			printf("fdos quick and cool 5.0.01\n");
+			printf("fdos quick and cool 5.0.3\n");
 		}
 		else if (strcmp(commandinputer, "dir") == 0) {
 			redirectorycatlimx(leftandright.directory.structdirectory_character, leftandright.directory.directorynowcharacter);
@@ -141,10 +143,18 @@ int shell() {
 \n5.0.1\n\
 \n+ 왈스크립트 추가\n\
 \n+ 개발기능 실행 여부\n\
+\n\
+\n5.0.2 or 3\
+\n+ 왈스크립트 보수\
+\n+ 입력기능 개선\
 \n버그제보: lookout1423@gmail.com\n");
 			//system("start msedge.exe lookout1423@gmail.com");
 		}
 		else if (strcmp(commandinputer, "cd") == 0) {
+			char iptopsyn1[256] = {0,};
+			sscanf(commandinput, "%s %s", commandinputer, iptopsyn1);
+			//leftandright.file.informationkeeps.himsi[10] = iptopsyn1;
+			strcpy(leftandright.file.informationkeeps.himsi[10], iptopsyn1);
 			command_cd();
 		}
 		else if (strcmp(commandinputer, "errorcodes") == 0) {
@@ -183,7 +193,7 @@ int shell() {
 			int major = access(dirrs, 00);
 			if (major == 0) {
 				//printf("아직 개발중인 기능입니다.");
-				printf("run: %s\\...\n현재 개발 중입니다. 개발중인 기능이므로 런과정에서 오류가 발생합니다. 실행하시겠습니까?", dirrs);
+				printf("run: %s\\...\n현재 개발 중입니다. 개발중인 기능이므로 런과정에서 오류가 발생합니다. 실행하시겠습니까?\n", dirrs);
 				int mass = MessageBox(NULL, TEXT("실행하시겠습니까?"), TEXT("경고!!!"), MB_ICONWARNING | MB_YESNOCANCEL);
 				if (mass == IDNO || mass == IDCANCEL) {
 					continue;

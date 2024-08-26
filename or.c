@@ -1,4 +1,5 @@
 #include"qcvars.h"
+#include <stdint.h>
 
 extern char packtextlist[100][100];
 extern system_1 leftandright; // 이게 된다는거죠
@@ -29,14 +30,21 @@ FILE* getcharacter;
 
 TOK_EN inputedtoken = NUL;
 
-int bincard[256] = {0,};
+int8_t bincard[256] = {0,};
 
 int orer(char jljljl[256]) {
 	char inputing[256];
 	//sscanf_s(jljljl, "%s", inputing, sizeof(inputing));
 	strcpy(inputing, jljljl);
 	getcharacter = fopen(inputing, "rb");
-	fread(&bincard, sizeof(int), 256, getcharacter);
+	if (!getcharacter) {
+		MessageBox(NULL, TEXT("error in open file"), TEXT("error!!!"), MB_ICONERROR | MB_OK);
+		return 0;
+	}
+	size_t read_count = fread(&bincard, sizeof(int), 256, getcharacter);
+	if (read_count != 256) {
+		printf("size of file isn\'t 256");
+	}
 	int i = 0;
 	while (1) {
 		if ((TOK_EN)bincard[i] == AND) {
@@ -91,12 +99,22 @@ int orer(char jljljl[256]) {
 			//i += 2;
 		}
 		else if ((TOK_EN)bincard[i] == HEX) {
-			leftandright.memory.rem.var[bincard[i + 1]] = leftandright.memory.rem.var[bincard[i + 2]];
-			i += 3;
+			if (bincard[i + 2] == 0) {
+				leftandright.memory.rem.var[bincard[i + 1]] = leftandright.memory.rem.var[bincard[i + 3]];
+			}
+			else {
+				leftandright.memory.rem.var[bincard[i + 1]] = bincard[i + 3];
+			}
+			i += 4;
 		}
 		else if ((TOK_EN)bincard[i] == STC) {
-			leftandright.memory.rem.var[bincard[i + 1]] += leftandright.memory.rem.var[bincard[i + 2]];
-			i += 3;
+			if (bincard[i + 2] == 0) {
+				leftandright.memory.rem.var[bincard[i + 1]] += leftandright.memory.rem.var[bincard[i + 2]];
+			}
+			else {
+				leftandright.memory.rem.var[bincard[i + 1]] += bincard[i + 3];
+			}
+			i += 4;
 		}
 		else if ((TOK_EN)bincard[i] == HLT) {
 			//leftandright.memory.rem.var[bincard[i + 1]] += leftandright.memory.rem.var[bincard[i + 2]];
@@ -105,11 +123,12 @@ int orer(char jljljl[256]) {
 			break;
 		}
 		else {
-			printf("or...");
+			printf("or... error in i = %d\n", i);
 			MessageBox(NULL, TEXT("or 스크립트에 오류가 발생했습니다."), TEXT("error!!!"), MB_ICONERROR | MB_OK);
 			break;
 			//i += 1;
 		}
 	}
+	printf("i = %d\n");
 	return 0;
 }
