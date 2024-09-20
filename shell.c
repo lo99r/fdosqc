@@ -137,12 +137,12 @@ int shell() {
 		}
 		else if (strcmp(commandinputer, "release") == 0) {
 			printf("다람냥 운영환경 5.0 quick and cool 릴리즈\n\
-\n5.0.01\n\
-\n+ 빠르고 시원해짐\n\
+\n5.0.01\
+\n+ 빠르고 시원해짐\
 \n\
-\n5.0.1\n\
-\n+ 왈스크립트 추가\n\
-\n+ 개발기능 실행 여부\n\
+\n5.0.1\
+\n+ 왈스크립트 추가\
+\n+ 개발기능 실행 여부\
 \n\
 \n5.0.2 or 3\
 \n+ 왈스크립트 보수\
@@ -150,6 +150,11 @@ int shell() {
 \n\
 \n5.0.4\
 \n+ 윈도우 프로그램 실행 기능\
+\n\
+\n5.0.5\
+\n\
+\n+ 윈도우 명령어 옵션 입력 가능\
+\n+ help 명령어 난찹줄력 수정\
 \n버그제보: lookout1423@gmail.com\n");
 			//system("start msedge.exe lookout1423@gmail.com");
 		}
@@ -183,7 +188,7 @@ int shell() {
 현재버전에서 일어날 수 있는 모든 오류 측정완료...\n");
 		}
 		else if (strcmp(commandinputer, "help") == 0) {
-			printf("ver 버전\ndir 폴더\ncd 폴더에 들어가기\nrelease 릴리즈 노트\nerrorcodes 오류 코드들\nㅗ디ㅔ ahffkdy?\\ㅜexit 나가요!");
+			printf("ver 버전\ndir 폴더\ncd 폴더에 들어가기\nrelease 릴리즈 노트\nerrorcodes 오류 코드들\nhelp 당신은 이 명령어를 통해 도움 받을 수 있습니다.\nexit 나가요!");
 		}
 		else if (strcmp(commandinputer, "exit") == 0) { // 잘못 끄셨는디?
 			printf("본 프로그램을 종료합니다.\n");
@@ -207,7 +212,7 @@ int shell() {
 				//orer(dirrs);//commandinputer
 			}
 			else if (major == -1) {
-				FILE* otherfiles = fopen(commandinputer, "r");system(commandinputer);//printf("error: 0x0001\n#%d\n", major);
+				FILE* otherfiles = fopen(commandinputer, "r");system(commandinput);//printf("error: 0x0001\n#%d\n", major);
 			}
 			else {
 				
