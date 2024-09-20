@@ -62,7 +62,7 @@ int shell() {
 		int Panert = 0;
 		sscanf(commandinput, "%s", commandinputer); // 뒤에 들어가는거 뭐임/*leftandright.memory.remdriveremembersystem.systempackagerfile*/
 		if (strcmp(commandinputer, "ver") == 0) {
-			printf("fdos quick and cool 5.0.3\n");
+			printf("fdos quick and cool 5.0.4\n");
 		}
 		else if (strcmp(commandinputer, "dir") == 0) {
 			redirectorycatlimx(leftandright.directory.structdirectory_character, leftandright.directory.directorynowcharacter);
@@ -147,6 +147,9 @@ int shell() {
 \n5.0.2 or 3\
 \n+ 왈스크립트 보수\
 \n+ 입력기능 개선\
+\n\
+\n5.0.4\
+\n+ 윈도우 프로그램 실행 기능\
 \n버그제보: lookout1423@gmail.com\n");
 			//system("start msedge.exe lookout1423@gmail.com");
 		}
@@ -204,10 +207,16 @@ int shell() {
 				//orer(dirrs);//commandinputer
 			}
 			else if (major == -1) {
-				printf("error: 0x0001\n#%d\n", major);
+				FILE* otherfiles = fopen(commandinputer, "r");system(commandinputer);//printf("error: 0x0001\n#%d\n", major);
 			}
 			else {
-				printf("error: 0x0003");
+				
+				/*if (otherfiles == -1) {
+					printf("error: 0x0003");
+				}
+				else {
+					
+				}*/
 			}
 		}
 	}
